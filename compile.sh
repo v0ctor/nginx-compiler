@@ -94,7 +94,7 @@ cd $NGINX
 	--with-zlib=/usr/local/src/$ZLIB \
 	--with-cc-opt='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic'
 
-make
+make -j $(nproc)
 make install
 
 ## Cleanup
