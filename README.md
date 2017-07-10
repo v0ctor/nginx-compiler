@@ -2,6 +2,35 @@
 
 Build and install [Nginx](https://nginx.org) on any UNIX system with the latest version of [OpenSSL](https://www.openssl.org/) to support [ALPN](https://en.wikipedia.org/wiki/Application-Layer_Protocol_Negotiation), and therefore [HTTP/2](https://en.wikipedia.org/wiki/HTTP/2).
 
+## Modules
+
+### Naxsi
+
+[Naxsi](https://www.nbs-system.com/securite-informatique/outils-securite-informatique-open-source/naxsi/) is a web application firewall based in rules files. The module is optional, for enable it, change "no" to "yes" into `data/extras.sh`. It's just a module and default rules (warning, the files `naxsi-core.rules` and `naxsi-wordpress.rules` are erased after build, if you have a personnal rules, create a new file into `naxsi` folder.
+
+Settings example:
+```Shell
+# Into nginx.conf
+http {
+    include /etc/nginx/naxsi/naxsi-core.rules;
+}
+
+# Into vhost.conf
+location / {
+    try_files $uri $uri/ /index.php?$args;
+    SecRulesEnabled;
+    CheckRule "$SQL >= 10" BLOCK;
+    CheckRule "$RFI >= 10" BLOCK;
+    CheckRule "$TRAVERSAL >= 5" BLOCK;
+    CheckRule "$EVADE >= 5" BLOCK;
+    CheckRule "$XSS >= 10" BLOCK;
+    DeniedUrl "/naxsi.html"; 
+    include   /etc/nginx/naxsi/naxsi-wordpress.rules;
+}
+```
+
+For `DeniedUrl`, create `naxsi.html` into root directory.
+
 ## Features
 * Builds and installs Nginx with its dependencies in a single step.
 * Uses the latest stable/LTS versions of the software.
