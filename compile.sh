@@ -3,6 +3,9 @@
 ## Import software versions
 source 'data/versions.sh'
 
+## Import extras modules
+source 'data/extras.sh'
+
 ## File/directory names
 NGINX="nginx-$NGINX_VERSION"
 OPENSSL="openssl-$OPENSSL_VERSION"
@@ -32,10 +35,20 @@ wget -q http://zlib.net/$ZLIB.tar.gz
 tar -xzf $ZLIB.tar.gz
 rm -f $ZLIB.tar.gz
 
+## Download module Naxsi with http2 supported (optional)
+if [ ${INSTALL_NAXSI} == "yes" ]; then
+    rm -Rf naxsi*
+    git clone https://github.com/nbs-system/naxsi.git --branch http2
+    ngx_naxsi_module="--add-module=../naxsi_src/ "
+else
+    ngx_naxsi_module=""
+fi
+
 ## Configure, compile and install
 cd $NGINX
 
 ./configure \
+    ${ngx_naxsi_module} \
 	--prefix=/usr/local/nginx \
 	--sbin-path=/usr/sbin/nginx \
 	--conf-path=/etc/nginx/nginx.conf \
@@ -86,4 +99,4 @@ make install
 
 ## Cleanup
 cd ..
-rm -rf $NGINX $OPENSSL $PCRE $ZLIB
+rm -rf $NGINX $OPENSSL $PCRE $ZLIB naxsi*
