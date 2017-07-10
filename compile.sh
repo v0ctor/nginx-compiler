@@ -39,7 +39,7 @@ rm -f $ZLIB.tar.gz
 if [ ${INSTALL_NAXSI} == "yes" ]; then
     rm -Rf naxsi*
     git clone https://github.com/nbs-system/naxsi.git --branch http2
-    ngx_naxsi_module="--add-module=../naxsi_src/ "
+    ngx_naxsi_module="--add-module=../naxsi/naxsi_src/ "
 else
     ngx_naxsi_module=""
 fi
