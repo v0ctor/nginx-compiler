@@ -97,6 +97,23 @@ cd $NGINX
 make -j $(nproc)
 make install
 
+## Naxsi rules
+if [ "${INSTALL_NAXSI}" == "yes" ]; then
+    if [ ! -e "/etc/nginx/naxsi" ]; then
+        mkdir -p /etc/nginx/naxsi
+    fi
+
+    # Download core rules
+    wget -q -O /etc/nginx/naxsi/naxsi-core.rules https://raw.githubusercontent.com/nbs-system/naxsi/master/naxsi_config/naxsi_core.rules
+
+    # Download wordpress rules
+    wget -q -O /etc/nginx/naxsi/naxsi-wordpress.rules https://raw.githubusercontent.com/nbs-system/naxsi-rules/master/wordpress.rules
+
+    # Download drupal rules
+    wget -q -O /etc/nginx/naxsi/naxsi-drupal.rules https://raw.githubusercontent.com/nbs-system/naxsi-rules/master/drupal.rules
+
+fi
+
 ## Cleanup
 cd ..
 rm -rf $NGINX $OPENSSL $PCRE $ZLIB naxsi*
