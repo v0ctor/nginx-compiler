@@ -40,6 +40,10 @@ if [ ${INSTALL_PAGESPEED} == "yes" ]; then
     wget -q https://github.com/pagespeed/ngx_pagespeed/archive/v${PAGESPEED_VERSION}-stable.zip
     unzip -qq v${PAGESPEED_VERSION}-stable.zip
     rm -f v${PAGESPEED_VERSION}-stable.zip
+    cd ngx_pagespeed-${PAGESPEED_VERSION}-stable
+    wget -q https://dl.google.com/dl/page-speed/psol/${PAGESPEED_VERSION}.tar.gz -O psol-${PAGESPEED_VERSION}.tar.gz
+    tar xzf psol-${AGESPEED_VERSION}.tar.gz && rm -f psol-${AGESPEED_VERSION}.tar.gz
+    cd ..
     PAGESPEED_MODULE="--add-module=../ngx_pagespeed-${PAGESPEED_VERSION}-stable"
 else
     PAGESPEED_MODULE=""
