@@ -35,20 +35,19 @@ wget -q http://zlib.net/$ZLIB.tar.gz
 tar -xzf $ZLIB.tar.gz
 rm -f $ZLIB.tar.gz
 
-## Download module Naxsi with http2 supported (optional)
+## Download NAXSI module (optional)
 if [ ${INSTALL_NAXSI} == "yes" ]; then
-    rm -Rf naxsi*
     git clone https://github.com/nbs-system/naxsi.git --branch http2
-    ngx_naxsi_module="--add-module=../naxsi/naxsi_src/ "
+    NAXSI_MODULE="--add-module=../naxsi/naxsi_src"
 else
-    ngx_naxsi_module=""
+    NAXSI_MODULE=""
 fi
 
 ## Configure, compile and install
 cd $NGINX
 
 ./configure \
-    ${ngx_naxsi_module} \
+    ${NAXSI_MODULE} \
 	--prefix=/usr/local/nginx \
 	--sbin-path=/usr/sbin/nginx \
 	--conf-path=/etc/nginx/nginx.conf \
@@ -106,12 +105,11 @@ if [ "${INSTALL_NAXSI}" == "yes" ]; then
     # Download core rules
     wget -q -O /etc/nginx/naxsi/naxsi-core.rules https://raw.githubusercontent.com/nbs-system/naxsi/master/naxsi_config/naxsi_core.rules
 
-    # Download wordpress rules
+    # Download WordPress rules
     wget -q -O /etc/nginx/naxsi/naxsi-wordpress.rules https://raw.githubusercontent.com/nbs-system/naxsi-rules/master/wordpress.rules
 
-    # Download drupal rules
+    # Download Drupal rules
     wget -q -O /etc/nginx/naxsi/naxsi-drupal.rules https://raw.githubusercontent.com/nbs-system/naxsi-rules/master/drupal.rules
-
 fi
 
 ## Cleanup
