@@ -8,9 +8,6 @@ Build and install [Nginx](https://nginx.org) on any UNIX system with the latest 
 * Can be used on any UNIX system with the corresponding dependencies.
 * Is transparent and secure, by not forcing the system administrator to rely on packages built and distributed by unofficial sources.
 
-## Upcoming features
-* Support of the [Google PageSpeed module for Nginx](https://github.com/pagespeed/ngx_pagespeed).
-
 ## *To use, or not to use*
 Below are shown the **GNU/Linux distributions** for which the official Nginx packages come with old versions of OpenSSL **that do not support ALPN**. If your operating system and version are listed below, use this utility. Otherwise it is preferable to use the [official Nginx packages](https://nginx.org/en/linux_packages.html) through your distribution's package manager.
 
@@ -41,6 +38,8 @@ If you want to build the latest mainline Nginx version instead of the stable one
 ## Modules
 
 There are extra modules that you can optionally install by editing the file `data/extras.sh`.
+
+### PageSpeed
 
 ### Naxsi
 
