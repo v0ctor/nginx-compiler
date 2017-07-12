@@ -16,3 +16,6 @@ PCRE_VERSION="8.40" # 2017-01-11 (old stable, latest supported by Nginx)
 
 # Zlib
 ZLIB_VERSION="1.2.11" # 2017-01-15 (stable)
+
+# PageSpeed (module, optional)
+PAGESPEED_VERSION="1.12.34.2"

@@ -35,6 +35,21 @@ wget -q https://zlib.net/$ZLIB.tar.gz
 tar -xzf $ZLIB.tar.gz
 rm -f $ZLIB.tar.gz
 
+## Download PageSpeed module (optional)
+if [ ${INSTALL_PAGESPEED} == "yes" ]; then
+    wget -q https://github.com/pagespeed/ngx_pagespeed/archive/v${PAGESPEED_VERSION}-stable.zip
+    unzip -qq v${PAGESPEED_VERSION}-stable.zip
+    rm -f v${PAGESPEED_VERSION}-stable.zip
+    cd ngx_pagespeed-${PAGESPEED_VERSION}-stable
+    PSOL_URL=`scripts/format_binary_url.sh PSOL_BINARY_URL`
+    wget -q ${PSOL_URL} -O psol-${PAGESPEED_VERSION}.tar.gz
+    tar xzf psol-${PAGESPEED_VERSION}.tar.gz && rm -f psol-${PAGESPEED_VERSION}.tar.gz
+    cd ..
+    PAGESPEED_MODULE="--add-module=../ngx_pagespeed-${PAGESPEED_VERSION}-stable"
+else
+    PAGESPEED_MODULE=""
+fi
+
 ## Download NAXSI module (optional)
 if [ ${INSTALL_NAXSI} == "yes" ]; then
     git clone https://github.com/nbs-system/naxsi.git --branch http2
@@ -48,6 +63,7 @@ cd $NGINX
 
 ./configure \
     ${NAXSI_MODULE} \
+    ${PAGESPEED_MODULE} \
 	--prefix=/usr/local/nginx \
 	--sbin-path=/usr/sbin/nginx \
 	--conf-path=/etc/nginx/nginx.conf \
@@ -120,4 +136,4 @@ fi
 
 ## Cleanup
 cd ..
-rm -rf $NGINX $OPENSSL $PCRE $ZLIB naxsi*
+rm -rf $NGINX $OPENSSL $PCRE $ZLIB naxsi* ngx_pagespeed-*-stable
