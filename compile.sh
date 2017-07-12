@@ -36,7 +36,7 @@ tar -xzf $ZLIB.tar.gz
 rm -f $ZLIB.tar.gz
 
 ## Download PageSpeed module (optional)
-if [ ${INSTALL_PAGESPEED} == "yes" ]
+if [ ${INSTALL_PAGESPEED} == "yes" ]; then
     wget -q https://github.com/pagespeed/ngx_pagespeed/archive/v${PAGESPEED_VERSION}-stable.zip
     unzip -qq v${PAGESPEED_VERSION}-stable.zip
     rm -f v${PAGESPEED_VERSION}-stable.zip
