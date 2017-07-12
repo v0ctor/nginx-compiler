@@ -3,7 +3,7 @@
 ## Import software versions
 source 'data/versions.sh'
 
-## Import extras modules
+## Import extra modules
 source 'data/extras.sh'
 
 ## File/directory names
