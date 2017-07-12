@@ -30,8 +30,8 @@ wget -q https://ftp.pcre.org/pub/pcre/$PCRE.tar.gz
 tar -xzf $PCRE.tar.gz
 rm -f $PCRE.tar.gz
 
-## Download Zlib (there is no secure link, 😔)
-wget -q http://zlib.net/$ZLIB.tar.gz
+## Download Zlib
+wget -q https://zlib.net/$ZLIB.tar.gz
 tar -xzf $ZLIB.tar.gz
 rm -f $ZLIB.tar.gz
 
