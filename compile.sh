@@ -103,13 +103,19 @@ if [ "${INSTALL_NAXSI}" == "yes" ]; then
     fi
 
     # Download core rules
-    wget -q -O /etc/nginx/naxsi/naxsi-core.rules https://raw.githubusercontent.com/nbs-system/naxsi/master/naxsi_config/naxsi_core.rules
+    if [ ! -e "/etc/nginx/naxsi/naxsi-core.rules" ]; then
+        wget -q -O /etc/nginx/naxsi/naxsi-core.rules https://raw.githubusercontent.com/nbs-system/naxsi/master/naxsi_config/naxsi_core.rules
+	fi
 
     # Download WordPress rules
-    wget -q -O /etc/nginx/naxsi/naxsi-wordpress.rules https://raw.githubusercontent.com/nbs-system/naxsi-rules/master/wordpress.rules
+    if [ ! -e "/etc/nginx/naxsi/naxsi-wordpress.rules" ]; then
+        wget -q -O /etc/nginx/naxsi/naxsi-wordpress.rules https://raw.githubusercontent.com/nbs-system/naxsi-rules/master/wordpress.rules
+	fi
 
     # Download Drupal rules
-    wget -q -O /etc/nginx/naxsi/naxsi-drupal.rules https://raw.githubusercontent.com/nbs-system/naxsi-rules/master/drupal.rules
+    if [ ! -e "/etc/nginx/naxsi/naxsi-drupal.rules" ]; then
+        wget -q -O /etc/nginx/naxsi/naxsi-drupal.rules https://raw.githubusercontent.com/nbs-system/naxsi-rules/master/drupal.rules
+    fi
 fi
 
 ## Cleanup
