@@ -43,7 +43,7 @@ if [ ${INSTALL_PAGESPEED} == "yes" ]; then
     cd ngx_pagespeed-${PAGESPEED_VERSION}-stable
     PSOL_URL=`scripts/format_binary_url.sh PSOL_BINARY_URL`
     wget -q ${PSOL_URL} -O psol-${PAGESPEED_VERSION}.tar.gz
-    tar xzf psol-${AGESPEED_VERSION}.tar.gz && rm -f psol-${AGESPEED_VERSION}.tar.gz
+    tar xzf psol-${PAGESPEED_VERSION}.tar.gz && rm -f psol-${PAGESPEED_VERSION}.tar.gz
     cd ..
     PAGESPEED_MODULE="--add-module=../ngx_pagespeed-${PAGESPEED_VERSION}-stable"
 else
