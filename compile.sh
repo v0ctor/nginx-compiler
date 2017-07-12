@@ -3,6 +3,9 @@
 ## Import software versions
 source 'data/versions.sh'
 
+## Import extra modules
+source 'data/extras.sh'
+
 ## File/directory names
 NGINX="nginx-$NGINX_VERSION"
 OPENSSL="openssl-$OPENSSL_VERSION"
@@ -32,10 +35,19 @@ wget -q http://zlib.net/$ZLIB.tar.gz
 tar -xzf $ZLIB.tar.gz
 rm -f $ZLIB.tar.gz
 
+## Download NAXSI module (optional)
+if [ ${INSTALL_NAXSI} == "yes" ]; then
+    git clone https://github.com/nbs-system/naxsi.git --branch http2
+    NAXSI_MODULE="--add-module=../naxsi/naxsi_src"
+else
+    NAXSI_MODULE=""
+fi
+
 ## Configure, compile and install
 cd $NGINX
 
 ./configure \
+    ${NAXSI_MODULE} \
 	--prefix=/usr/local/nginx \
 	--sbin-path=/usr/sbin/nginx \
 	--conf-path=/etc/nginx/nginx.conf \
@@ -81,9 +93,31 @@ cd $NGINX
 	--with-zlib=/usr/local/src/$ZLIB \
 	--with-cc-opt='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic'
 
-make
+make -j $(nproc)
 make install
+
+## Naxsi rules
+if [ "${INSTALL_NAXSI}" == "yes" ]; then
+    if [ ! -e "/etc/nginx/naxsi" ]; then
+        mkdir -p /etc/nginx/naxsi
+    fi
+
+    # Download core rules
+    if [ ! -e "/etc/nginx/naxsi/naxsi-core.rules" ]; then
+        wget -q -O /etc/nginx/naxsi/naxsi-core.rules https://raw.githubusercontent.com/nbs-system/naxsi/master/naxsi_config/naxsi_core.rules
+	fi
+
+    # Download WordPress rules
+    if [ ! -e "/etc/nginx/naxsi/naxsi-wordpress.rules" ]; then
+        wget -q -O /etc/nginx/naxsi/naxsi-wordpress.rules https://raw.githubusercontent.com/nbs-system/naxsi-rules/master/wordpress.rules
+	fi
+
+    # Download Drupal rules
+    if [ ! -e "/etc/nginx/naxsi/naxsi-drupal.rules" ]; then
+        wget -q -O /etc/nginx/naxsi/naxsi-drupal.rules https://raw.githubusercontent.com/nbs-system/naxsi-rules/master/drupal.rules
+    fi
+fi
 
 ## Cleanup
 cd ..
-rm -rf $NGINX $OPENSSL $PCRE $ZLIB
+rm -rf $NGINX $OPENSSL $PCRE $ZLIB naxsi*

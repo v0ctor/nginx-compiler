@@ -38,5 +38,37 @@ sh compile.sh
 
 If you want to build the latest mainline Nginx version instead of the stable one, comment and uncomment the corresponding lines of the `data/versions.sh` file. Do the same if you want to use the latest stable OpenSSL version instead of the LTS (long term support) one.
 
+## Modules
+
+There are extra modules that you can optionally install by editing the file `data/extras.sh`.
+
+### Naxsi
+
+[Naxsi](https://www.nbs-system.com/securite-informatique/outils-securite-informatique-open-source/naxsi/) is a web application firewall based on sets of rules. To enable it, edit the file `data/extras.sh` and set the `INSTALL_NAXSI` variable to `yes`.
+
+Settings example for `nginx.conf`:
+```Nginx
+http {
+    include /etc/nginx/naxsi/naxsi-core.rules;
+}
+```
+
+Settings example for `conf.d/*.conf`:
+```Nginx
+location / {
+    try_files $uri $uri/ /index.php?$query_string;
+    SecRulesEnabled;
+    CheckRule "$SQL >= 10" BLOCK;
+    CheckRule "$RFI >= 10" BLOCK;
+    CheckRule "$TRAVERSAL >= 5" BLOCK;
+    CheckRule "$EVADE >= 5" BLOCK;
+    CheckRule "$XSS >= 10" BLOCK;
+    DeniedUrl "/naxsi.html"; 
+    include   /etc/nginx/naxsi/naxsi-wordpress.rules;
+}
+```
+
+For the `DeniedUrl` rule to work, create a file named `naxsi.html` in the root directory.
+
 ## License
 This software is distributed under the MIT license. Please read `LICENSE` for information on the software availability and distribution.
