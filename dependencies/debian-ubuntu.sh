@@ -5,4 +5,4 @@
 # https://wiki.debian.org/BuildingTutorial
 # https://help.ubuntu.com/community/CompilingSoftware
 
-apt -y install build-essential automake checkinstall wget git
+apt -y install build-essential automake checkinstall wget git unzip
