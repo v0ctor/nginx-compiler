@@ -37,7 +37,7 @@ If you want to build the latest mainline Nginx version instead of the stable one
 
 ## Modules
 
-There are extra modules that you can optionally install by editing the file `data/extras.sh`.
+There are extra modules that you can optionally install by editing the file `data/modules.sh`.
 
 ### Pagespeed
 
@@ -45,7 +45,7 @@ There are extra modules that you can optionally install by editing the file `dat
 
 ### Naxsi
 
-[Naxsi](https://www.nbs-system.com/securite-informatique/outils-securite-informatique-open-source/naxsi/) is a web application firewall based on sets of rules. To enable it, edit the file `data/extras.sh` and set the `INSTALL_NAXSI` variable to `yes`.
+[Naxsi](https://www.nbs-system.com/securite-informatique/outils-securite-informatique-open-source/naxsi/) is a web application firewall based on sets of rules. To enable it, edit the file `data/modules.sh` and set the `INSTALL_NAXSI` variable to `yes`.
 
 Settings example for `nginx.conf`:
 ```Nginx

@@ -4,7 +4,7 @@
 source 'data/versions.sh'
 
 ## Import extra modules
-source 'data/extras.sh'
+source 'data/modules.sh'
 
 ## File/directory names
 NGINX="nginx-$NGINX_VERSION"
