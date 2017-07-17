@@ -39,7 +39,9 @@ If you want to build the latest mainline Nginx version instead of the stable one
 
 There are extra modules that you can optionally install by editing the file `data/extras.sh`.
 
-### PageSpeed
+### Pagespeed
+
+[Pagespeed](https://modpagespeed.com) is an open-source Apache module created by Google to help make the web faster by rewriting web pages to reduce latency and bandwidth. The documentation is very complete (and long), for the dependencies, it will to [see here](https://modpagespeed.com/doc/build_ngx_pagespeed_from_source) and on [the configuration here](https://modpagespeed.com/doc/configuration).
 
 ### Naxsi
 
