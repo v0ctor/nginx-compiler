@@ -37,33 +37,35 @@ rm -f $ZLIB.tar.gz
 
 ## Download PageSpeed module (optional)
 if [ ${INSTALL_PAGESPEED} == "yes" ]; then
-    wget -q https://github.com/pagespeed/ngx_pagespeed/archive/v${PAGESPEED_VERSION}-stable.zip
-    unzip -qq v${PAGESPEED_VERSION}-stable.zip
-    rm -f v${PAGESPEED_VERSION}-stable.zip
-    cd ngx_pagespeed-${PAGESPEED_VERSION}-stable
-    PSOL_URL=`scripts/format_binary_url.sh PSOL_BINARY_URL`
-    wget -q ${PSOL_URL} -O psol-${PAGESPEED_VERSION}.tar.gz
-    tar xzf psol-${PAGESPEED_VERSION}.tar.gz && rm -f psol-${PAGESPEED_VERSION}.tar.gz
-    cd ..
-    PAGESPEED_MODULE="--add-module=../ngx_pagespeed-${PAGESPEED_VERSION}-stable"
+	wget -q https://github.com/pagespeed/ngx_pagespeed/archive/v${PAGESPEED_VERSION}-stable.zip
+	unzip -qq v${PAGESPEED_VERSION}-stable.zip
+	rm -f v${PAGESPEED_VERSION}-stable.zip
+
+	cd ngx_pagespeed-${PAGESPEED_VERSION}-stable
+	PSOL_URL=`scripts/format_binary_url.sh PSOL_BINARY_URL`
+	wget -q ${PSOL_URL} -O psol-${PAGESPEED_VERSION}.tar.gz
+	tar xzf psol-${PAGESPEED_VERSION}.tar.gz && rm -f psol-${PAGESPEED_VERSION}.tar.gz
+	cd ..
+
+	PAGESPEED_MODULE="--add-module=../ngx_pagespeed-${PAGESPEED_VERSION}-stable"
 else
-    PAGESPEED_MODULE=""
+	PAGESPEED_MODULE=""
 fi
 
 ## Download NAXSI module (optional)
 if [ ${INSTALL_NAXSI} == "yes" ]; then
-    git clone https://github.com/nbs-system/naxsi.git --branch http2
-    NAXSI_MODULE="--add-module=../naxsi/naxsi_src"
+	git clone https://github.com/nbs-system/naxsi.git --branch http2
+	NAXSI_MODULE="--add-module=../naxsi/naxsi_src"
 else
-    NAXSI_MODULE=""
+	NAXSI_MODULE=""
 fi
 
 ## Configure, compile and install
 cd $NGINX
 
 ./configure \
-    ${NAXSI_MODULE} \
-    ${PAGESPEED_MODULE} \
+	${PAGESPEED_MODULE} \
+	${NAXSI_MODULE} \
 	--prefix=/usr/local/nginx \
 	--sbin-path=/usr/sbin/nginx \
 	--conf-path=/etc/nginx/nginx.conf \
@@ -114,24 +116,24 @@ make install
 
 ## Naxsi rules
 if [ "${INSTALL_NAXSI}" == "yes" ]; then
-    if [ ! -e "/etc/nginx/naxsi" ]; then
-        mkdir -p /etc/nginx/naxsi
-    fi
-
-    # Download core rules
-    if [ ! -e "/etc/nginx/naxsi/naxsi-core.rules" ]; then
-        wget -q -O /etc/nginx/naxsi/naxsi-core.rules https://raw.githubusercontent.com/nbs-system/naxsi/master/naxsi_config/naxsi_core.rules
+	if [ ! -e "/etc/nginx/naxsi" ]; then
+		mkdir -p /etc/nginx/naxsi
 	fi
 
-    # Download WordPress rules
-    if [ ! -e "/etc/nginx/naxsi/naxsi-wordpress.rules" ]; then
-        wget -q -O /etc/nginx/naxsi/naxsi-wordpress.rules https://raw.githubusercontent.com/nbs-system/naxsi-rules/master/wordpress.rules
+	# Download core rules
+	if [ ! -e "/etc/nginx/naxsi/naxsi-core.rules" ]; then
+		wget -q -O /etc/nginx/naxsi/naxsi-core.rules https://raw.githubusercontent.com/nbs-system/naxsi/master/naxsi_config/naxsi_core.rules
 	fi
 
-    # Download Drupal rules
-    if [ ! -e "/etc/nginx/naxsi/naxsi-drupal.rules" ]; then
-        wget -q -O /etc/nginx/naxsi/naxsi-drupal.rules https://raw.githubusercontent.com/nbs-system/naxsi-rules/master/drupal.rules
-    fi
+	# Download WordPress rules
+	if [ ! -e "/etc/nginx/naxsi/naxsi-wordpress.rules" ]; then
+		wget -q -O /etc/nginx/naxsi/naxsi-wordpress.rules https://raw.githubusercontent.com/nbs-system/naxsi-rules/master/wordpress.rules
+	fi
+
+	# Download Drupal rules
+	if [ ! -e "/etc/nginx/naxsi/naxsi-drupal.rules" ]; then
+		wget -q -O /etc/nginx/naxsi/naxsi-drupal.rules https://raw.githubusercontent.com/nbs-system/naxsi-rules/master/drupal.rules
+	fi
 fi
 
 ## Cleanup
