@@ -41,7 +41,7 @@ There are extra modules that you can optionally install by editing the file `dat
 
 ### Pagespeed
 
-[Pagespeed](https://modpagespeed.com) is an open-source Apache module created by Google to help make the web faster by rewriting web pages to reduce latency and bandwidth. The documentation is very complete (and long), for the dependencies, it will to [see here](https://modpagespeed.com/doc/build_ngx_pagespeed_from_source) and on [the configuration here](https://modpagespeed.com/doc/configuration).
+[Pagespeed](https://github.com/pagespeed/ngx_pagespeed) is an open-source module created by Google to help make the web faster by rewriting web pages to reduce latency and bandwidth.
 
 ### Naxsi
 
