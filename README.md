@@ -9,14 +9,10 @@ Build and install [Nginx](https://nginx.org) on any UNIX system with the latest 
 * Is transparent and secure, by not forcing the system administrator to rely on packages built and distributed by unofficial sources.
 
 ## *To use, or not to use*
-Below are shown the **GNU/Linux distributions** for which the official Nginx packages come with old versions of OpenSSL **that do not support ALPN**. If your operating system and version are listed below, use this utility. Otherwise it is preferable to use the [official Nginx packages](https://nginx.org/en/linux_packages.html) through your distribution's package manager.
+Below are shown the **GNU/Linux distributions** for which the official Nginx packages come with versions of OpenSSL **that support ALPN**. If your operating system and version are listed below, **do not use** this utility. In that case it is preferable to use the [official Nginx packages](https://nginx.org/en/linux_packages.html) through your distribution's package manager.
 
-* Debian
-* RHEL / CentOS
-* Ubuntu 15.10 and earlier
-* Any other for which there is no [official package](https://nginx.org/en/linux_packages.html)
-
-> Debian distributes Nginx with OpenSSL 1.0.2k through *[jessie-backports](https://packages.debian.org/jessie-backports/nginx)*, but backport packages are provided without any warranty and they should only be used for testing purposes.
+* Debian 9 (Stretch) and later.
+* Ubuntu 16.04 LTS (Xenial Xerus) and later.
 
 ## Dependencies
 This utility requires `wget` and essential building tools like the `make` command and the GCC compiler. To install the necessary packages, go to the `dependencies` directory and run the script corresponding to your GNU/Linux distribution or family. For example:
