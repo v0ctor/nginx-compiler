@@ -19,11 +19,24 @@ cd /usr/local/src
 wget -q https://nginx.org/download/$NGINX.tar.gz
 tar -xzf $NGINX.tar.gz
 rm -f $NGINX.tar.gz
+if [ $OPENSSL_VERSION == "tls1.3" ]; then
+  cd $NGINX
+  wget -q https://raw.githubusercontent.com/cujanovic/nginx-dynamic-tls-records-patch/master/nginx__dynamic_tls_records_1.11.5%2B.patch
+  patch -p1 < nginx__dynamic_tls_records_1.11.5*.patch
+  cd ..
+fi
 
 ## Download OpenSSL
-wget -q https://www.openssl.org/source/$OPENSSL.tar.gz
-tar -xzf $OPENSSL.tar.gz
-rm -f $OPENSSL.tar.gz
+if [ $OPENSSL_VERSION == "tls1.3" ]; then
+  git clone https://github.com/openssl/openssl.git $OPENSSL
+  cd $OPENSSL
+  git checkout tls1.3-draft-18
+  cd ..
+else
+  wget -q https://www.openssl.org/source/$OPENSSL.tar.gz
+  tar -xzf $OPENSSL.tar.gz
+  rm -f $OPENSSL.tar.gz
+fi
 
 ## Download PCRE
 wget -q https://ftp.pcre.org/pub/pcre/$PCRE.tar.gz
