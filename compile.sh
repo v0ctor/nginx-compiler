@@ -32,6 +32,7 @@ if [ $OPENSSL_VERSION == "tls1.3" ]; then
   cd $OPENSSL
   git checkout tls1.3-draft-18
   cd ..
+  OPENSSL_OPTS="--with-openssl-opt=enable-tls1_3"
 else
   wget -q https://www.openssl.org/source/$OPENSSL.tar.gz
   tar -xzf $OPENSSL.tar.gz
@@ -114,7 +115,7 @@ cd $NGINX
 	--with-http_v2_module \
 	--with-mail \
 	--with-mail_ssl_module \
-	--with-openssl=/usr/local/src/$OPENSSL \
+	--with-openssl=/usr/local/src/$OPENSSL $OPENSSL_OPTS \
 	--with-pcre=/usr/local/src/$PCRE \
 	--with-pcre-jit \
 	--with-stream \
