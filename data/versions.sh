@@ -7,8 +7,13 @@
 #NGINX_VERSION="1.13.5" # 2017-09-05 (mainline)
 NGINX_VERSION="1.12.1" # 2017-07-11 (stable)
 
+# OpenSSL TLSv1.3 support
+# Warning it is a development version and based into draft18 branch (latest is 1.1.1-dev)
+# Add ciphers "TLS13-AES-128-GCM-SHA256 TLS13-AES-256-GCM-SHA384 TLS13-CHACHA20-POLY1305-SHA256"
+# Add protocol "TLSv1.3"
+#OPENSSL_VERSION="tls1.3"
+
 # OpenSSL
-#OPENSSL_VERSION="tls1.3" # Use development version (1.1.1-dev) and specific branch draft18 for tls1.3 support (development)
 #OPENSSL_VERSION="1.1.0f" # 2017-05-25 (stable)
 OPENSSL_VERSION="1.0.2l" # 2017-05-25 (long term support)
 
