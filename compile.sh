@@ -19,6 +19,7 @@ cd /usr/local/src
 wget -q https://nginx.org/download/$NGINX.tar.gz
 tar -xzf $NGINX.tar.gz
 rm -f $NGINX.tar.gz
+
 if [ $OPENSSL_VERSION == "tls1.3" ]; then
   cd $NGINX
   wget -q https://raw.githubusercontent.com/cujanovic/nginx-dynamic-tls-records-patch/master/nginx__dynamic_tls_records_1.11.5%2B.patch
