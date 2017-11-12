@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ## Software versions (you can edit this if there are newer versions)
-## Updated: 2017-10-13
+## Updated: 2017-10-28
 
 # Nginx
 #NGINX_VERSION="1.13.5" # 2017-09-05 (mainline)
