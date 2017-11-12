@@ -29,7 +29,7 @@ Run the main script and Nginx will be automatically compiled and installed in yo
 sh compile.sh
 ```
 
-If you want to build the latest mainline Nginx version instead of the stable one, comment and uncomment the corresponding lines of the `data/versions.sh` file. Do the same if you want to use the latest stable OpenSSL version instead of the LTS (long term support) one.
+If you want to build the latest mainline Nginx version instead of the stable one, comment and uncomment the corresponding lines of the `data/versions.sh` file. Do the same if you want to use the latest stable OpenSSL version instead of the LTS (long term support) one. If you want to support TLS 1.3 (that is a development feature), follow the instructions of the `data/versions.sh` file.
 
 ## Modules
 
