@@ -1,6 +1,6 @@
 # Nginx compiler
 
-Build and install [Nginx](https://nginx.org) on any UNIX system with the latest version of [OpenSSL](https://www.openssl.org/) to support [ALPN](https://en.wikipedia.org/wiki/Application-Layer_Protocol_Negotiation), and therefore [HTTP/2](https://en.wikipedia.org/wiki/HTTP/2).
+Build and install [Nginx](https://nginx.org) on any UNIX system with the latest version of [OpenSSL](https://www.openssl.org) to support [ALPN](https://en.wikipedia.org/wiki/Application-Layer_Protocol_Negotiation), and therefore [HTTP/2](https://en.wikipedia.org/wiki/HTTP/2).
 
 ## Features
 * Builds and installs Nginx with its dependencies in a single step.
@@ -11,11 +11,13 @@ Build and install [Nginx](https://nginx.org) on any UNIX system with the latest 
 ## *To use, or not to use*
 Below are shown the **GNU/Linux distributions** for which the official Nginx packages come with versions of OpenSSL **that support ALPN**. If your operating system and version are listed below, **do not use** this utility. In that case it is preferable to use the [official Nginx packages](https://nginx.org/en/linux_packages.html) through your distribution's package manager.
 
+* CentOS/Oracle Linux/RHEL 7.4 and later.
 * Debian 9 (Stretch) and later.
 * Ubuntu 16.04 LTS (Xenial Xerus) and later.
 
 ## Dependencies
 This utility requires `wget` and essential building tools like the `make` command and the GCC compiler. To install the necessary packages, go to the `dependencies` directory and run the script corresponding to your GNU/Linux distribution or family. For example:
+
 ```Shell
 sh dependencies/debian-ubuntu.sh
 ```
@@ -44,6 +46,7 @@ There are extra modules that you can optionally install by editing the file `dat
 [Naxsi](https://www.nbs-system.com/securite-informatique/outils-securite-informatique-open-source/naxsi/) is a web application firewall based on sets of rules. To enable it, edit the file `data/modules.sh` and set the `INSTALL_NAXSI` variable to `yes`.
 
 Settings example for `nginx.conf`:
+
 ```Nginx
 http {
     include /etc/nginx/naxsi/naxsi-core.rules;
@@ -51,6 +54,7 @@ http {
 ```
 
 Settings example for `conf.d/*.conf`:
+
 ```Nginx
 location / {
     try_files $uri $uri/ /index.php?$query_string;
