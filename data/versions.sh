@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 
 ## Software versions (you can edit this if there are newer versions)
-## Updated: 2018-02-11
+## Updated: 2018-04-14
 
 # Nginx
-#NGINX_VERSION="1.13.8" # 2017-12-26 (mainline)
+#NGINX_VERSION="1.13.12" # 2018-04-10 (mainline)
 NGINX_VERSION="1.12.2" # 2017-10-17 (stable)
 
 # OpenSSL
-#OPENSSL_VERSION="tls1.3" # latest development version with TLS 1.3 support
-#OPENSSL_VERSION="1.1.0g" # 2017-11-02 (stable)
-OPENSSL_VERSION="1.0.2n" # 2017-12-07 (long term support)
+#OPENSSL_VERSION="1.1.1-pre4" # 2018-04-03 (preview with TLS 1.3 support)
+#OPENSSL_VERSION="1.1.0h" # 2018-03-27 (stable)
+OPENSSL_VERSION="1.0.2o" # 2018-03-27 (long term support)
 
-# [About OpenSSL with TLSv1.3 support]
+# [About OpenSSL 1.1.1]
 #
-# It is a development version and it is based on the "draft18" branch.
+# It is a preview version with TLS 1.3 support.
 #
 # Specific Nginx settings are required:
 # - Add protocol "TLSv1.3" to the directive "ssl_protocols".

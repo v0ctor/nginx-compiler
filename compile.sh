@@ -20,25 +20,10 @@ wget -q https://nginx.org/download/$NGINX.tar.gz
 tar -xzf $NGINX.tar.gz
 rm -f $NGINX.tar.gz
 
-if [ $OPENSSL_VERSION == "tls1.3" ]; then
-  cd $NGINX
-  wget -q https://raw.githubusercontent.com/cujanovic/nginx-dynamic-tls-records-patch/master/nginx__dynamic_tls_records_1.11.5%2B.patch
-  patch -p1 < nginx__dynamic_tls_records_1.11.5*.patch
-  cd ..
-fi
-
 ## Download OpenSSL
-if [ $OPENSSL_VERSION == "tls1.3" ]; then
-  git clone https://github.com/openssl/openssl.git $OPENSSL
-  cd $OPENSSL
-  git checkout tls1.3-draft-18
-  cd ..
-  OPENSSL_OPTS="--with-openssl-opt=enable-tls1_3"
-else
-  wget -q https://www.openssl.org/source/$OPENSSL.tar.gz
-  tar -xzf $OPENSSL.tar.gz
-  rm -f $OPENSSL.tar.gz
-fi
+wget -q https://www.openssl.org/source/$OPENSSL.tar.gz
+tar -xzf $OPENSSL.tar.gz
+rm -f $OPENSSL.tar.gz
 
 ## Download PCRE
 wget -q https://ftp.pcre.org/pub/pcre/$PCRE.tar.gz
@@ -52,7 +37,7 @@ rm -f $ZLIB.tar.gz
 
 ## Download PageSpeed module (optional)
 if [ ${INSTALL_PAGESPEED} == "yes" ]; then
-	wget -q https://github.com/pagespeed/ngx_pagespeed/archive/v${PAGESPEED_VERSION}-stable.zip
+	wget -q https://github.com/apache/incubator-pagespeed-ngx/archive/v${PAGESPEED_VERSION}-stable.zip
 	unzip -qq v${PAGESPEED_VERSION}-stable.zip
 	rm -f v${PAGESPEED_VERSION}-stable.zip
 
@@ -116,7 +101,7 @@ cd $NGINX
 	--with-http_v2_module \
 	--with-mail \
 	--with-mail_ssl_module \
-	--with-openssl=/usr/local/src/$OPENSSL $OPENSSL_OPTS \
+	--with-openssl=/usr/local/src/$OPENSSL \
 	--with-pcre=/usr/local/src/$PCRE \
 	--with-pcre-jit \
 	--with-stream \
