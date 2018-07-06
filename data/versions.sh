@@ -8,7 +8,7 @@
 NGINX_VERSION="1.14.0" # 2018-04-17 (stable)
 
 # OpenSSL
-#OPENSSL_VERSION="1.1.1-pre4" # 2018-04-03 (preview with TLS 1.3 support)
+#OPENSSL_VERSION="1.1.1-pre8" # 2018-06-20 (preview with TLS 1.3 support)
 #OPENSSL_VERSION="1.1.0h" # 2018-03-27 (stable)
 OPENSSL_VERSION="1.0.2o" # 2018-03-27 (long term support)
 
