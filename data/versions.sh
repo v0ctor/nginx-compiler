@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 ## Software versions (you can edit this if there are newer versions)
-## Updated: 2018-04-14
+## Updated: 2018-07-03
 
 # Nginx
-#NGINX_VERSION="1.13.12" # 2018-04-10 (mainline)
-NGINX_VERSION="1.12.2" # 2017-10-17 (stable)
+#NGINX_VERSION="1.15.1" # 2018-07-03 (mainline)
+NGINX_VERSION="1.14.0" # 2018-04-17 (stable)
 
 # OpenSSL
 #OPENSSL_VERSION="1.1.1-pre4" # 2018-04-03 (preview with TLS 1.3 support)
