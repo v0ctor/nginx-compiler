@@ -54,7 +54,7 @@ fi
 
 ## Download NAXSI module (optional)
 if [ ${INSTALL_NAXSI} == "yes" ]; then
-	git clone https://github.com/nbs-system/naxsi.git --branch http2
+	git clone https://github.com/nbs-system/naxsi.git
 	NAXSI_MODULE="--add-module=../naxsi/naxsi_src"
 else
 	NAXSI_MODULE=""
