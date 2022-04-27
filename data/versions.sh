@@ -1,30 +1,20 @@
 #!/usr/bin/env bash
 
 ## Software versions (you can edit this if there are newer versions)
-## Updated: 2018-07-03
+## Updated: 2022-04-27
 
 # Nginx
-#NGINX_VERSION="1.15.1" # 2018-07-03 (mainline)
-NGINX_VERSION="1.14.0" # 2018-04-17 (stable)
+#NGINX_VERSION="1.21.6" # 2022-01-25 (mainline)
+NGINX_VERSION="1.20.2" # 2021-11-16 (stable)
 
 # OpenSSL
-#OPENSSL_VERSION="1.1.1-pre8" # 2018-06-20 (preview with TLS 1.3 support)
-#OPENSSL_VERSION="1.1.0h" # 2018-03-27 (stable)
-OPENSSL_VERSION="1.0.2o" # 2018-03-27 (long term support)
-
-# [About OpenSSL 1.1.1]
-#
-# It is a preview version with TLS 1.3 support.
-#
-# Specific Nginx settings are required:
-# - Add protocol "TLSv1.3" to the directive "ssl_protocols".
-# - Add ciphers "TLS13-AES-128-GCM-SHA256 TLS13-AES-256-GCM-SHA384 TLS13-CHACHA20-POLY1305-SHA256" to the directive "ssl_ciphers".
+OPENSSL_VERSION="1.1.1n" # 2022-03-15
 
 # PCRE
-PCRE_VERSION="8.41" # 2017-07-05 (old stable, latest supported by Nginx)
+PCRE_VERSION="8.45" # 2021-06-22
 
 # Zlib
-ZLIB_VERSION="1.2.11" # 2017-01-15 (stable)
+ZLIB_VERSION="1.2.12" # 2022-03-27
 
 # PageSpeed (module, optional)
-PAGESPEED_VERSION="1.13.35.2" # 2018-02-05 (stable)
+PAGESPEED_VERSION="1.13.35.2" # 2018-02-05
